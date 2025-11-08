@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Use Git and GitHub CLI with an Existing Unity Project</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main>
+    <section>
+      <h2>Use Git and GitHub CLI with an Existing Unity Project</h2>
+      <p>You already have a Unity project — let’s connect it to Git and GitHub step by step using the GitHub CLI.</p>
+
+      <ul class="accordion">
+        <li>
+          <details open>
+            <summary>1. Open your Unity project in VS Code</summary>
+            <p>Launch VS Code and open your Unity project folder (<code>File → Open Folder</code>). You should see folders like <code>Assets</code> and <code>ProjectSettings</code>.</p>
+            <p>Open the terminal with <kbd>Ctrl</kbd> + <kbd>`</kbd>.</p>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>2. Verify you are inside the Unity folder</summary>
+            <p>Make sure you are in the Unity project root (the same level as <code>Assets/</code>).</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">ls</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>3. Initialize Git in your project</summary>
+            <p>Set up Git version control for this folder.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">git init</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>4. Create a Unity .gitignore file</summary>
+            <p>This excludes build folders and temporary Unity files from your commits.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>5. (Optional) Add a README file</summary>
+            <p>This is a short description of your project that appears on GitHub.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">echo "# My Unity Project" > README.md</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>6. Stage and commit your project files</summary>
+            <p>This records your current project state in Git.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">git add .</span>
+              <span class="cmd">git commit -m "Initial commit - Unity project setup"</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>7. Log in to GitHub CLI (if you haven’t already)</summary>
+            <p>Authenticate with your GitHub account to use the CLI commands.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">gh auth login</span>
+            </div>
+            <p>Choose <strong>GitHub.com → HTTPS → Login with browser</strong>.</p>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>8. Create a new GitHub repository for your Unity project</summary>
+            <p>This links your local project to a new GitHub repo.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">gh repo create MyUnityProject --private --source=. --remote=origin</span>
+              <span class="cmd"># or make it public</span>
+              <span class="cmd">gh repo create MyUnityProject --public --source=. --remote=origin</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>9. Rename your branch and push your code</summary>
+            <p>Rename your default branch to <code>main</code> and push it to GitHub.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">git branch -M main</span>
+              <span class="cmd">git push -u origin main</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>10. Enable Git LFS (optional for large files)</summary>
+            <p>Use this if your project contains large assets like <code>.psd</code>, <code>.fbx</code>, or <code>.wav</code> files.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">git lfs install</span>
+              <span class="cmd">git lfs track "*.psd" "*.fbx" "*.wav"</span>
+              <span class="cmd">git add .gitattributes</span>
+              <span class="cmd">git commit -m "Configure Git LFS for large files"</span>
+              <span class="cmd">git push</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>11. Verify your repository online</summary>
+            <p>Open the repo directly in your browser.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">gh repo view --web</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>12. Make future changes and commit them</summary>
+            <p>Every time you make changes in Unity:</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">git add .</span>
+              <span class="cmd">git commit -m "Describe what you changed"</span>
+              <span class="cmd">git push</span>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary>13. (Optional) Add collaborators</summary>
+            <p>Invite teammates to contribute to your project.</p>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <span class="cmd">gh repo add-collaborator username</span>
+            </div>
+            <p>Or do it from your GitHub repo’s “Settings → Collaborators” page.</p>
+          </details>
+        </li>
+      </ul>
+
+      <footer class="notes">
+        <h4>Notes</h4>
+        <ul>
+          <li>Make sure your Unity <code>Library/</code> and <code>Temp/</code> folders are not included — the Unity <code>.gitignore</code> handles this.</li>
+          <li>To pull your project on another computer: <code>gh repo clone &lt;username&gt;/MyUnityProject</code></li>
+          <li>Use descriptive commit messages for teamwork and easier debugging.</li>
+          <li>Run <code>git status</code> anytime to see what’s changed before committing.</li>
+        </ul>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = Array.from(btn.parentNode.querySelectorAll('.cmd'))
+          .map(cmd => cmd.innerText).join('\n');
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = 'Copy', 1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

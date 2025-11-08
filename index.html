@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Git Essentials</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="site-title">Git Essentials</h1>
+      <p class="site-sub">Your personal collection of step-by-step technical tutorials</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="repo-grid" id="repoGrid">
+      <p>Loading guides...</p>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">×</button>
+      <button id="fullscreenBtn" class="fullscreen-btn">🖵</button>
+      <iframe id="guideFrame" src="" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Cheat Sheet",
+    "description": "An interactive step-by-step guide.",
+    "file": "cheat-sheet.html"
+  },
+  {
+    "title": "How To Git Vscode",
+    "description": "An interactive step-by-step guide.",
+    "file": "how-to-git-vscode.html"
+  },
+  {
+    "title": "Unity Git Setup",
+    "description": "An interactive step-by-step guide.",
+    "file": "unity-git-setup.html"
+  }
+]

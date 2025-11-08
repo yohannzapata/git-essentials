@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create your own project using Git Commands with VSCode</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main>
+    <section>
+      <h2>Create your own project using Git Commands with VSCode</h2>
+      <p>Learn how to set up Git in VS Code, commit your work, and push your project to GitHub — all from the terminal.</p>
+
+      <ul class="accordion">
+        <li>
+          <details open>
+            <summary>1. Git Command Cheat Sheet</summary>
+            <div class="codeblock">
+              <button class="copy">Copy</button>
+              <pre class="cmd">
+Cheat Sheet
+
+Update main
+git checkout main
+git pull origin main
+
+New branch
+git checkout -b feature/yourname-task
+
+See status
+git status
+
+Stage & commit
+git add .
+git commit -m "feat: describe change"
+
+Push first time
+git push -u origin feature/yourname-task
+
+Merge main into branch
+git checkout main
+git pull origin main
+git checkout feature/yourname-task
+git merge main
+
+Resolve conflicts
+git status
+# Edit files to remove markers, then:
+git add file
+git commit
+
+Rebase (optional)
+git checkout feature/yourname-task
+git rebase main
+git rebase --continue
+
+Delete after merge
+git checkout main
+git branch -d feature/yourname-task
+git push origin --delete feature/yourname-task
+              </pre>
+            </div>
+          </details>
+        </li>   
+      </ul>
+
+      <footer class="notes">
+        <h4>Notes</h4>
+        <ul>
+          <li>If your branch is already named <code>main</code>, skip the rename step.</li>
+          <li>You can use VS Code's Source Control view for GUI commits.</li>
+          <li>Install GitHub CLI from <a href="https://cli.github.com" target="_blank">cli.github.com</a>.</li>
+        </ul>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const text = Array.from(btn.parentNode.querySelectorAll('.cmd, pre.cmd'))
+          .map(cmd=>cmd.innerText).join('\n');
+        navigator.clipboard.writeText(text).then(()=>{
+          btn.textContent='Copied!';
+          setTimeout(()=>btn.textContent='Copy',1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
